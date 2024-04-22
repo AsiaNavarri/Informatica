@@ -62,10 +62,16 @@ public class Navarri_3E_EsempioImplementazioneMetodi //creazione classe
                         break;
 
                     case 3: //biBinarySearch
-
-                        arrayOrdinato = evenOddSearch(arrayNumeri); //invoca metodo per ordinare l'array
-                        biBinarySearch(); //invoca metodo per carcare
-
+                            //ordinamento array
+                            arrayOrdinato = evenOddSearch(arrayNumeri);
+                        
+                        int indice = biBinarySearch(arrayOrdinato, tastiera); //savla valore dell'indice
+                        if (indice == -1)
+                            System.out.println("Il numero inserito non è presente nell'array");
+                        
+                        else
+                            System.out.println("Il numero inserito si trova nella posizione posizione: "+(indice+1));
+                       
                         break;
 
                     default:
