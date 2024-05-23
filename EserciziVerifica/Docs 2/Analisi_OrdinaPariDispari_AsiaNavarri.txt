@@ -1,0 +1,135 @@
+﻿ORDINA PARI E DISPARI
+
+
+“testo” = modifiche
+
+CONSEGNA:
+
+Dato un insieme disordinato (della dimensione minima 10 e massima 11 elementi) di numeri interi positivi non ripetuti (valore minimo 1, valore massimo 30), occorre poter ordinare, in ordine crescente, i soli numeri PARI, lasciando gli eventuali dispari nella loro posizione originaria, lasciando anche l'ultimo valore (pari o dispari non importa) nella propria posizione originaria.
+*    Esempio di input:    9 4 6 5 2 10 7 1 8 
+*    Esempio di output:  9 2 4 5 6 7 1 10 8
+*    Esempio di input:    6 2 4 8 12 14 16 10
+*    Esempio di output:  2 4 6 8 10 12 14 10
+*    Esempio di input:    9 7 5 3 1 11 13 15 17 
+*    Esempio di output:  9 7 5 3 1 11 13 15 17 
+
+
+   Descrivere la strategia risolutiva per l'implementazione del software, dopo aver illustrato eventuali vincoli e considerazioni utili.
+
+
+   Descrivere il comportamento dell’algoritmo di ordinamento utilizzato.
+
+
+   Scrivere il codice (java-like) relativo all’algoritmo di soluzione del software in modo che si comporti nel modo sopra descritto.
+
+________________
+
+
+ANALISI DEI REQUISITI:
+
+Vincoli:
+* Permette l’inserimento di inserire 10 numeri 
+* verifica che siano interi, positivi e non ripetuti 
+* controlla anche tutti gli elementi facciano parte dell’intervallo predefinito (valore minimo 1 e valore massimo 30) 
+* Richiede all’utente se vuole inserire l’undicesimo elemento 
+* ordina i valori inseriti:
+   * i numeri pari in ordine crescente
+   * i dispari e l’ultimo numero rimangono nella loro posizione 
+
+
+Considerazioni utili:
+* per ogni valore inserito: se non rispetta le caratteristiche necessarie, viene reinserito
+* creare un secondo array se viene inserito l’11 numero
+
+________________
+
+STRATEGIA RISOLUTIVA:
+
+1. creare l’array di 10 elementi
+2. richiedere all’utente l’inserimento dei 10 numeri 
+3. verificare se i numeri rispettano i criteri richiesti 
+4. salvare il valore nell’array
+5. chiedere all’utente se vuole inserire anche l’11^ numero 
+   a. sì: 
+      i. creare un secondo array di 11 elementi
+      ii. copiare il contenuto dell’array precedente su quello appena creato
+      iii. richiedere all’utente l’inserimento del numero
+      iv. verificare se il numero rispetta i criteri richiesti 
+      v. salvare il valore nell’array
+6. stampare l’array non ordinato
+7. ordinare l’array attraverso un metodo dedicato (utilizza il metodo di ordinamento selection sort)
+8. “verificare se è già ordinato”
+9. stampare l’array ordinato
+
+
+GESTIONE ORDINAMENTO:
+1. calcolo dei numeri pari presenti nell’array
+2. creazione 2 array: uno per le posizioni dei numeri pari all’interno dell’array iniziale e uno per i numeri pari
+3. inserimento delle posizioni e dei numeri pari nei rispettivi array
+4. attraverso il metodo selection sort si ordinano i numeri pari
+5. inserimento dei numeri pari ordinati nelle posizioni indicate nell’array delle posizioni
+
+
+FUNZIONAMENTO DEL SELECTION SORT:
+1. L'algoritmo parte dal primo elemento dell'array non ordinato
+2. Per ogni posizione nell'array (indicata con i), l'algoritmo cerca il valore minimo nell'array che va dalla posizione i alla fine dell'array
+3. Una volta trovato il valore minimo nel sottoarray, questo viene scambiato con l'elemento alla posizione i
+4. Ripetere il processo fino a che l'intero array non è ordinato
+
+________________
+
+ANALISI FUNZIONALE:
+
+Acquisizione numeri:
+Inserire … numero: …
+
+
+Menù scelta 11^ numero:
+Inserire 11 numero?
+[1] sì
+[2] no
+
+
+Stampa array non ordinato:
+Array non ordinato:
+…
+
+
+Stampa array non ordinato:
+Array ordinato:
+…
+
+
+I/O Programma:
+* acquisizione dei numeri
+* se il numero non rispetta i criteri, stampa messaggio di errore e acquisisce un nuovo numero
+* richiesta all’utente se vuole inserire l’11 numero
+* acquisizione e verifica numero
+* stampa array non ordinato
+* stampa array ordinato
+________________
+
+ANALISI TECNICA:
+
+Class Main:
+
+* void main()
+* int verificaNumero (int n, int [] array, int index) 
+	verifica che i numeri inserirti rispettino i criteri
+	1. nel caso siano corretti ritorna 0
+	2. “altrimenti ritorna i vari tipi di errori”
+* void stampa (int [] array)
+	metodo per stampare l’array
+* int ordina (int [] array)
+	metodo per l’ordinamento dell’array
+	“ritorna 1 se l’array è già ordinato”
+* “int selectionSort(int[] arrayPari)”
+	“metodo che usa selection sort per ordinare i numeri pari, ritorna 1 se è già ordinato”
+
+________________
+
+VARIAZIONI/AGGIUNTE:
+* “aggiunti diversi messaggi di errore in base ai numeri inseriti”
+* “verifica se l’array è già ordinato con il relativo messaggio”
+* “aggiunta del metodo selection sort diviso rispetto a ordina”
+

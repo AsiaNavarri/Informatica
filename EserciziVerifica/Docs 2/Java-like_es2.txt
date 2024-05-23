@@ -1,0 +1,202 @@
+﻿ORDINA PARI E DISPARI
+
+
+Sviluppo dell algoritmo in pseudo codice
+
+
+void main():
+{
+    // Dichiarazione e inizializzazione delle variabili
+    int scelta = 0
+    int [] array = array di 10 elementi
+    int [] nuovoArray = array di 11 elementi
+
+
+    Scanner scanner = new Scanner()
+
+
+    // Acquisizione e verifica dei numeri, inserendoli nell'array
+    for (int i = 0 ; i<10; i++){
+        // Richiesta all'utente se vuole inserire anche l'undicesimo numero
+        if( i == 10)
+            do{
+                print("Inserire 11 numero?\n[1] sì\n[2] no\n")
+                scelta = scanner.nextInt()
+           } while (scelta != 1 && scelta != 2)
+
+
+            if (scelta == 1)
+                // Copia dei 10 elementi precedenti nel nuovo array
+                arrayCopy(array, 0, nuovoArray, 0, array.length)
+
+
+                // Acquisizione 11 numero
+                do{
+                    print("Inserire " + (i + 1) + " numero: ")
+                    nuovoArray[i] = scanner.nextInt()
+
+
+                    if (verificaNumero(nuovoArray[i], nuovoArray, i) == -1)
+                        print("Il numero inserito non appartiene all'intervallo di valori corretto \n(deve essere compreso tra 1 e 30) ")
+                    
+else if (verificaNumero(nuovoArray[i], nuovoArray, i) == 1)
+                        print("Il numero inserito è già presente nell'array")
+
+
+                }while (verificaNumero(nuovoArray[i], nuovoArray, i) != 0)
+        else
+{
+            do{
+                print("Inserire " + (i + 1) + " numero: ")
+                array[i] = scanner.nextInt()
+
+
+                if (verificaNumero(array[i], array, i) == -1)
+                    print("Il numero inserito non appartiene all'intervallo di valori corretto \n(deve essere compreso tra 1 e 30) ")
+                else if (verificaNumero(array[i], array, i) == 1)
+                    print("Il numero inserito è già presente nell'array")
+            }while (verificaNumero(array[i], array, i) != 0)
+
+
+    if (scelta == 1)
+    {
+    // Stampa a schermo dell'array non ordinato
+        print("ARRAY DI NUMERI NON ORDINATO: ")
+        stampa(nuovoArray)
+
+
+        // Ordinamento dei numeri all'interno dell'array
+        ordina(nuovoArray)
+
+
+        //verifica se l'array è già ordinato
+        if ordina(nuovoArray) == 1:
+            print("\nL'array è già ordinato")
+
+
+        // Stampa a schermo dell'array ordinato
+        print("\nARRAY DI NUMERI ORDINATO: ")
+        stampa(nuovoArray)
+}
+    else:
+{  
+        // Stampa a schermo dell'array non ordinato
+        print("ARRAY DI NUMERI NON ORDINATO: ")
+        stampa(array)
+
+
+        // Ordinamento dei numeri all'interno dell'array
+        ordina(array)
+
+
+        //verifica se l'array è già ordinato
+        if (ordina(array) == 1)
+            print("\nL'array è già ordinato")
+
+
+        // Stampa a schermo dell'array ordinato
+        print("\nARRAY DI NUMERI ORDINATO: ")
+        stampa(array)
+}
+
+
+// Funzione per la verifica dei numeri inseriti che devono essere compresi tra 1 e 30
+// e non devono ripetersi all'interno dell'array
+int verificaNumero(int n, int []array,int index)
+{
+    if (n < 1 || n > 30)
+        return -1 // il valore non appartiene all'intervallo di numeri corretto
+
+
+    for (int i = 0 ; i< index - 1; i++)
+{
+                        if (n == array[i])
+            return 1 // il valore è già presente nell'array
+}
+    return 0 // il valore rispetta tutti i criteri
+}
+
+
+// metodo per la stampa dell'array
+void stampa(int[]array)
+{
+    for (int i = 0; i< array.length - 1; i++)
+        print(array[i] + " ")
+}
+
+
+// metodo per ordinare l'array dei numeri inseriti in modo che i numeri pari sono ordinati in modo crescente
+// la posizione dei numeri dispari e dell'ultimo elemento dell'array rimane invariata
+int ordina (int [] array)
+{
+    int contaPari = 0
+    int index = 0
+
+
+    for (int i = 0 ; i< array.length - 2; i++)
+{
+                        if (array[i] % 2 == 0)
+                    contaPari++
+}
+
+
+   int  arrayPari = array di dimensione contaPari
+   int  posizioni = array di dimensione contaPari
+
+
+    for (int i = 0; i< array.length - 2; i++)
+        if (array[i] % 2 == 0)
+{
+            arrayPari[index] = array[i]
+            posizioni[index] = i
+            index++
+}
+
+
+    selectionSort(arrayPari)
+
+
+    for (int i = 0; i<  arrayPari.length - 1; i++)
+{
+                        array[posizioni[i]] = arrayPari[i]
+}
+
+
+    if (contaPari == 0 || selectionSort(arrayPari) == 1)
+        return 1
+
+
+    return 0
+
+
+// metodo di ordinamento selection sort per ordinare i numeri pari
+int selectionSort(arrayPari)
+{
+    int scambio = 0
+
+
+    for ( int i = 0; i< arrayPari.length - 2; i++)
+{
+        int minIndex = i
+
+
+        for (int j = i + 1; j< arrayPari.length - 1; j++)
+{
+            if arrayPari[j] < arrayPari[minIndex]
+{
+                minIndex = j
+                scambio++
+}
+
+
+        temp = arrayPari[minIndex]
+        arrayPari[minIndex] = arrayPari[i]
+        arrayPari[i] = temp
+
+
+    if (scambio == 0)
+        return 1
+
+
+    return 0
+}

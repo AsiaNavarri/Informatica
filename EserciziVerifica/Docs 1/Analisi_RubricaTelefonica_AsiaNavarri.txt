@@ -1,0 +1,223 @@
+﻿RUBRICA TELEFONICA
+
+
+“testo” = modifiche
+
+
+CONSEGNA:
+Progettare un software che permetta ad un utente di poter gestire la propria rubrica telefonica, permettendo, tramite l’inserimento di un’apposita password, di visualizzare anche eventuali contatti nascosti. 
+Tramite un altro metodo appositamente progettato consenta di tornare alla situazione iniziale.
+
+
+Attenzione: 
+
+
+   Un singolo contatto nascosto può essere reso sempre visibile e viceversa.
+   Occorrerà gestire la lista delle ultime chiamate, in modo che possa essere coerente con quanto sopra richiesto
+   Scrivere il codice (java-like) di una parte saliente del software, motivandone la scelta.
+
+
+ANALISI DEI REQUISITI:
+Il software deve rispettare i seguenti requisiti:
+* Permette l’inserimento di un contatto
+* Permette la visualizzazione dei contatti (selezionando e inserendo una password per vedere anche quelli nascosti)
+* Permette di modificare un contatto (sempre selezionando se modicare tra l’insieme di solo quelli visibili o anche quelli nascosti)
+* Permette di eliminare un contatto (sempre selezionando se modicare tra l’insieme di solo quelli visibili o anche quelli nascosti)
+* Permette di effettuare chiamate (sempre selezionando se modicare tra l’insieme di solo quelli visibili o anche quelli nascosti)
+* Permette di tenere traccia delle chiamate effettuate (sempre selezionando se modicare tra l’insieme di solo quelli visibili o anche quelli nascosti)
+* Permette di visualizzare le chiamate in base allo stato (visibile o non) del contatto
+* “Permette di modificare la password “
+(se non viene modificata, quella preimpostata è 0000)
+
+
+________________
+
+
+
+
+ANALISI FUNZIONALE:
+
+
+Menù di scelta dell’azione da eseguire:
+=== Rubrica Telefonica ===
+[1] Inserire un contatto
+[2] Visualizza i contatti inseriti
+[3] Modifica un contatto
+[4] Elimina un contatto
+[5] Effettua chiamata
+[6] Visualizza registro chiamate
+“[7] Modifica password”
+[8] Esci
+
+
+Acquisizione dati del contatto:
+Inserire nome:
+“(nome inserito non valido) messaggio di errore”
+Inserire cognome:
+“(cognome inserito non valido) messaggio di errore”
+Inserire numero di telefono: 
+
+
+Menù di scelta stato iniziale del contatto:
+Seleziona stato del contatto:
+[1] Visibile
+[2] Nascosto
+
+
+Modalità di stampa dei contatti:
+Nome: … Cognome: … Numero di telefono: …
+
+
+Menù visibilità dei contatti nascosti:
+Visualizzare contatti nascosti?
+[1] Sì
+[2] No
+
+
+Acquisizione password:
+Inserire password: …
+(password errata) messaggio di errore
+
+
+Menù possibili contatti da eliminare/modificare/chiamare:
+CONTATTI MODIFICABILI/ELIMINABILI/A CUI E’ POSSIBILE EFFETTUARE UNA TELEFONATA:
+[1] Nome: … cognome: … numero di telefono: …
+[2] …
+
+
+Visualizzazione registro chiamate:
+Nome: … Cognome: … Numero di telefono: … Chiamate effettuate: …
+
+
+I/O Programma:
+
+
+All’inizio del programma e dopo il termine di ogni azione:
+* Stampa menù delle azioni da eseguire
+* Acquisisce la scelta e la memorizza su una variabile
+
+
+        Opzione 1:
+* Acquisizione dei dati del contatto (nome, cognome, telefono principale)
+* stampa menù per selezionare lo stato del contatto
+* Acquisizione stato
+
+
+        Opzione 2:
+* Stampa contatti visibili
+* stampa menù di scelta se visualizzare anche quelli nascosti:
+se l’utente seleziona l’opzione per visualizzare i contatti nascosti:
+   * richiede inserimento password 
+   * acquisisce la password
+   * stampa la lista con anche i contatti nascosti
+
+
+        Opzione 3:
+* Stampa contatti visibili
+* stampa menù di scelta se visualizzare anche quelli nascosti:
+se l’utente seleziona l’opzione per visualizzare i contatti nascosti:
+   * richiede inserimento password 
+   * acquisisce la password
+   * stampa la lista con anche i contatti nascosti
+altrimenti: acquisisce solo la selezione
+* acquisisce nuovamente i dati del contatto
+* stampa “contatto modificato “
+
+
+        Opzione 4:
+* Stampa contatti visibili
+* stampa menù di scelta se visualizzare anche quelli nascosti:
+se l’utente seleziona l’opzione per visualizzare i contatti nascosti:
+   * richiede inserimento password 
+   * acquisisce la password
+   * stampa la lista con anche i contatti nascosti
+altrimenti: acquisisce solo la selezione
+* stampa “contatto eliminato”
+
+
+Opzione 5:
+* Stampa contatti visibili
+* stampa menù di scelta se visualizzare anche quelli nascosti:
+se l’utente seleziona l’opzione per visualizzare i contatti nascosti:
+   * richiede inserimento password 
+   * acquisisce la password
+   * stampa la lista con anche i contatti nascosti
+altrimenti: acquisisce solo la selezione
+* stampa “chiamata effettuata “
+
+
+         Opzione 6:
+* Stampa il registro delle chiamate effettuate dei contatti visibili
+* se l’utente seleziona l’opzione per visualizzare i contatti nascosti:
+   * richiede inserimento password e la acquisisce
+   * se è corretta: 
+      * stampa la lista con anche i contatti nascosti
+
+
+“Opzione 7:
+* chiede di inserire la password corrente
+* acquisisce la password
+* se corretta:
+   * chiede di inserire la nuova password
+   * acquisisce la nuova password”
+
+
+Opzione 8:
+* Comunica la fine del programma
+
+
+________________
+
+
+
+
+ANALISI TECNICA:
+
+
+Package tools:
+* class utility
+public:
+   * ClrScr() 
+metodo per cancellare lo schermo
+   * Wait(int x) 
+metodo per far fermare il programma per un certo tempo
+   * menu(String[] opzioni, Scanner keyboard) 
+metodo per la stampa del menù, l’acquisizione e la verifica della scelta inserita
+Contatto:
+* class Contatto(contiene i dati dei contatti)
+public:
+   * String nome
+   * String cognome
+   * String telefono
+   * boolean nascosto
+   * int nChiamate
+
+
+* String stampa() 
+metodo per stampare i dati del contatto
+Main:
+* class Main
+   * void main () 
+   * Contatto inserisci (Scanner scanner)
+aggiunge un contatto in rubrica leggendone i dati
+   * void visualizza (Contatto[] rubrica, int nContatto, int scelta, int chiamate) 
+stampa tutti i contatti in rubrica
+   * void elimina(Contatto[]rubrica, int index, int nContatto)
+elimina un contatto in rubrica selezionato con index
+   * “int ripetiContatto (Contatto []rubrica, int nContatto)
+verifica se il contatto è già presente in rubrica
+* int menuRubrica(Contatto []rubrica, int nContatto, Scanner scanner, int scelta)
+stampa i contatti sotto forma di menù e acquisisce il numero corrispondente che serve per svolgere le operazioni di modifica, eliminazione e chiamata”
+
+
+
+
+________________
+
+
+
+
+AGGIUNTE/MODIFICHE:
+* aggiunta controllo per la ripetizione dei contatti
+* aggiunta controllo della validità dei dati inseriti
+* aggiunta possibilità di modificare la password

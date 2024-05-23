@@ -1,0 +1,49 @@
+﻿SVILUPPO PARTE DI CODICE IN PSEUDO-CODICE
+
+
+La parte di codice riguarda il metodo che serve per stampare l’elenco dei dati in modo da selezionare quello da modificare/eliminare o telefonare.
+Ho scelto di scrivere questo perché è quello che viene ripetuto più volte all’interno del software e funge da base per molte delle operazioni eseguibili come, appunto, la possibilità di modificare un contatto, di eliminarlo o di effettuare una chiamata.
+
+
+int menuRubrica (Contatto[]rubrica, int nContatto, Scanner scanner, int scelta)
+    // dichiarazione variabile
+    int index = -1
+
+
+    // controlla se ci sono contatti in rubrica
+    if (nContatto == 0)
+        stampa "Nessun contatto inserito"
+    else
+       { // verifica se vanno stampati anche i contatti nascosti
+        if (scelta == 1)
+           { // stampa del menù con i vari contatti tra cui scegliere
+            for (i =0; i< nContatto - 1; i++)
+                stampa "[" + (i + 1) + "] " + rubrica[i].stampa()
+        }else
+         {   // stampa solo contatti visibili
+             for (i =0; i< nContatto - 1; i++)
+                // controlla se è visibile
+                if (rubrica[i].nascosto == false)
+                    stampa "[" + (i + 1) + "] " + rubrica[i].stampa()
+        }
+        // acquisizione e verifica scelta
+        if (scelta == 2)
+          {  do
+              {  stampa "\nInserire numero del contatto: "
+                index = scanner.nextInt() - 1
+                if index < 0 o index >= nContatto o rubrica[index].nascosto == true
+                    stampa "Valore inserito non valido"
+            }while (index < 0 o index >= nContatto o rubrica[index].nascosto == true)
+    }    
+else if (scelta == 1){
+            do
+               { stampa "\nInserire numero del contatto: "
+                index = scanner.nextInt() - 1
+                if( index < 0 o index >= nContatto)
+                    stampa "Valore inserito non valido"
+            } while (index < 0 o index >= nContatto)
+        return index
+}
+
+
+return index
